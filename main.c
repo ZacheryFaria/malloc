@@ -3,33 +3,38 @@
 #include <string.h>
 #include "inc/libmalloc.h"
 
-// void big_boi()
-// {
-// 	char **str = malloc(sizeof(char*) * 1000);
-// 	for (int i = 0; i < 1000; i++)
-// 	{
-// 		str[i] = malloc(2000 - i * 2);
-// 	}
-// 	for (int i = 0; i < 500; i++)
-// 	{
-// 		free(str[i]);
-// 	}
-// 	for (int i = 0; i < 500; i++)
-// 	{
-// 		str[i] = malloc(4000 - i * 2);
-// 	}
-// 	for (int i = 0; i < 1000; i++)
-// 	{
-// 		free(str[i]);
-// 	}
-// 	free(str);
-// 	str = malloc(sizeof(char *) * 1000);
-// 	for (int i = 999; i >= 0; i--)
-// 	{
-// 		str[i] = malloc(2000 - i * 2);
-// 	}
-// 	//print_memory();
-// }
+void big_boi()
+{
+	char **str = malloc(sizeof(char*) * 1000);
+	for (int i = 0; i < 1000; i++)
+	{
+		str[i] = malloc(2000 - i * 2);
+	}
+	for (int i = 0; i < 500; i++)
+	{
+		free(str[i]);
+	}
+	for (int i = 0; i < 500; i++)
+	{
+		str[i] = malloc(4000 - i * 2);
+	}
+	for (int i = 0; i < 1000; i++)
+	{
+		free(str[i]);
+	}
+	free(str);
+	str = malloc(sizeof(char *) * 1000);
+	for (int i = 999; i >= 0; i--)
+	{
+		str[i] = malloc(2000 - i * 2);
+	}
+	for (int i = 0; i < 1000; i++)
+	{
+		free(str[i]);
+ 	}
+	free(str);
+	show_alloc_mem();
+}
 
 // int main(void)
 // {
@@ -46,15 +51,21 @@
 // 	//print_memory();
 // }
 
-int main()
-{
-	char	*c;
+#include <unistd.h>
+#define M (1024 * 1024) 
 
-	for(int i = 0; i < 1024;i++)
-	{
-		c = malloc(1024);
-		//printf("%p\n", c);
-		//free(c);
-	}
+void print (char * s) 
+{ 
+write (1, s, strlen (s)); 
+} 
 
-}
+int main () 
+{ 
+malloc (1024); 
+malloc (1024 * 32); 
+malloc (1024 * 1024); 
+malloc (1024 * 1024 * 16); 
+malloc (1024 * 1024 * 128); 
+show_alloc_mem (); 
+return (0); 
+} 

@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libmalloc.h                                        :+:      :+:    :+:   */
+/*   calloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/22 10:35:43 by zfaria            #+#    #+#             */
-/*   Updated: 2019/07/30 12:59:40 by zfaria           ###   ########.fr       */
+/*   Created: 2019/07/30 12:58:30 by zfaria            #+#    #+#             */
+/*   Updated: 2019/07/30 12:59:33 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBMALLOC_H
-# define LIBMALLOC_H
+#include <libmalloc_util.h>
 
-# include <stdlib.h>
+void	*calloc(size_t num, size_t size)
+{
+	void *ptr;
 
-void	*malloc(size_t size);
-void	free(void *ptr);
-void	*realloc(void *ptr, size_t size);
-void	show_alloc_mem(void);
-void	*calloc(size_t num, size_t size);
-
-#endif
+	ptr = malloc(num * size);
+	if (!ptr)
+		return (0);
+	memset(ptr, 0, num * size);
+	return (ptr);
+}

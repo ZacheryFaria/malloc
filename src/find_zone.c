@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 13:57:23 by zfaria            #+#    #+#             */
-/*   Updated: 2019/07/23 14:14:15 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/07/30 10:49:05 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,16 @@ int				valid_pointer(size_t *ptr, size_t *zone, size_t zsize)
 	t_meta	*meta;
 	size_t	i;
 
+	if (!zone)
+		return (0);
 	i = 2;
 	while (i < zsize / STEP)
 	{
 		meta = (t_meta *)(zone + i);
 		if (ptr == (size_t *)meta + 2)
 			return (1);
+		if (meta->cap == 0)
+			return (0);
 		i += ALIGN(meta->cap - 1) / STEP + 4;
 	}
 	return (0);

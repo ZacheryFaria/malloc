@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 12:25:07 by zfaria            #+#    #+#             */
-/*   Updated: 2019/07/23 14:02:46 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/07/30 13:00:07 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void	*alloc(size_t size)
 	ptr = mmap(0, size, PROT_READ | PROT_WRITE,
 		MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 	if (ptr == MAP_FAILED)
-	{
-		perror("malloc");
 		return (0);
-	}
 	meta = ptr;
 	meta->cap = -1;
 	meta->req = -1;
@@ -58,12 +55,10 @@ void	*find_free_mem(size_t *zone, size_t zsize, size_t req)
 		meta = (t_meta *)(zone + i);
 		if (ISFREE(meta))
 		{
-			//size_t val = steps - i - 6 - (ALIGN(req) / sizeof(size_t));
 			if (meta->cap == 0)
 			{
 				if (steps - i - 6 > (ALIGN(req) / sizeof(size_t)))
 				{
-					//printf("metazone: %p\n", zone + i);
 					set_meta(zone, req, i);
 					return (zone + i + 2);
 				}
@@ -71,11 +66,11 @@ void	*find_free_mem(size_t *zone, size_t zsize, size_t req)
 			}
 			else if (meta->cap >= ALIGN(req))
 			{
-				prevcap = meta->cap;
-				set_meta(zone, req, i);
-				meta = (t_meta *)(zone + i + 4 + (ALIGN(req) / sizeof(size_t)));
-				meta->cap = prevcap - ALIGN(req) - sizeof(size_t) * 4;
-				meta->req = 0;
+				meta->req = req;
+				meta->cap |= 1;
+				meta = zone + i + (meta->cap / STEP) + 2;
+				meta->req = req;
+				meta->cap |= 1;
 				return (zone + i + 2);
 			}
 			else
