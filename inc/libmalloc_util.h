@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 10:35:24 by zfaria            #+#    #+#             */
-/*   Updated: 2019/07/31 11:18:59 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/07/31 11:28:43 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,5 @@ size_t			*find_zone(size_t *ptr, size_t *zsize);
 size_t			*find_zone_large(size_t *ptr);
 
 int				valid_pointer(size_t *ptr, size_t *zone, size_t zsize);
-
-
 
 #endif
