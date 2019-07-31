@@ -1,6 +1,7 @@
 CC=clang
 CFLAGS=-Wextra -Wall -g
-CFLAGS+=-Iinc 
+CFLAGS+=-Iinc -Ilibft
+LFLAGS=-L libft -lft
 DLFLAGS=-shared -fPIC
 SRC=$(wildcard src/*)
 OBJ=$(SRC:src/%.c=%.o)
@@ -16,7 +17,8 @@ NAME=libft_malloc_$(HOSTTYPE).so
 VPATH = src obj
 
 $(NAME): $(OBJ)
-	@$(CC) $(DLFLAGS) -o $(NAME) obj/*
+	@make -C libft/
+	@$(CC) $(LFLAGS) $(DLFLAGS) -o $(NAME) obj/*
 	@echo "build complete!"
 
 all: $(NAME)

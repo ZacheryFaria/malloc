@@ -6,13 +6,12 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 12:22:21 by zfaria            #+#    #+#             */
-/*   Updated: 2019/07/30 12:56:21 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/07/31 11:25:02 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libmalloc_util.h>
-#include <stdio.h>
-#include <signal.h>
+#include <libft.h>
 
 static void	*adjust_mem(size_t *ptr, size_t size)
 {
@@ -28,7 +27,7 @@ static void	*adjust_mem(size_t *ptr, size_t size)
 	else
 	{
 		newptr = malloc(size);
-		memcpy(newptr, ptr, meta->req);
+		ft_memcpy(newptr, ptr, meta->req);
 		free(ptr);
 		return (newptr);
 	}
@@ -48,7 +47,7 @@ static void	*adjust_large(size_t *ptr, size_t size)
 	else
 	{
 		newptr = malloc(size);
-		memcpy(newptr, ptr, meta->meta.req);
+		ft_memcpy(newptr, ptr, meta->meta.req);
 		free(ptr);
 		return (newptr);
 	}

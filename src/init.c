@@ -6,21 +6,21 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 12:28:08 by zfaria            #+#    #+#             */
-/*   Updated: 2019/07/30 10:55:09 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/07/31 11:19:11 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libmalloc_util.h>
 #include <stdio.h>
 
-t_map map;
+t_map	g_map;
 
 void	init_map(void)
 {
-	if (!map.small)
+	if (!g_map.small)
 	{
-		map.small = alloc(SMALL_ZONE);
-		map.tiny = alloc(TINY_ZONE);
-		map.large = alloc(BLK_SIZE);
+		g_map.small = alloc(SMALL_ZONE);
+		g_map.tiny = alloc(TINY_ZONE);
+		g_map.large = alloc(BLK_SIZE);
 	}
 }

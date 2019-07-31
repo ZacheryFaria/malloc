@@ -6,11 +6,12 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 12:58:30 by zfaria            #+#    #+#             */
-/*   Updated: 2019/07/30 12:59:33 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/07/31 11:26:03 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libmalloc_util.h>
+#include <libft.h>
 
 void	*calloc(size_t num, size_t size)
 {
@@ -19,6 +20,6 @@ void	*calloc(size_t num, size_t size)
 	ptr = malloc(num * size);
 	if (!ptr)
 		return (0);
-	memset(ptr, 0, num * size);
+	ft_memset(ptr, 0, num * size);
 	return (ptr);
 }

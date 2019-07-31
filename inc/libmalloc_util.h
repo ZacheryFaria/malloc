@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 10:35:24 by zfaria            #+#    #+#             */
-/*   Updated: 2019/07/30 10:55:13 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/07/31 11:18:59 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef	struct	s_map {
 	size_t		**large;
 }				t_map;
 
-extern	t_map	map;
+extern	t_map	g_map;
 extern	int		g_malloc_opts;
 
 void			init_map(void);

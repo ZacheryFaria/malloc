@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 12:25:07 by zfaria            #+#    #+#             */
-/*   Updated: 2019/07/30 13:00:07 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/07/31 11:26:48 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	*find_free_mem(size_t *zone, size_t zsize, size_t req)
 {
 	size_t		i;
 	size_t		steps;
-	size_t		prevcap;
 	t_meta		*meta;
 
 	steps = zsize / sizeof(size_t);
@@ -68,7 +67,7 @@ void	*find_free_mem(size_t *zone, size_t zsize, size_t req)
 			{
 				meta->req = req;
 				meta->cap |= 1;
-				meta = zone + i + (meta->cap / STEP) + 2;
+				meta = (t_meta *)(zone + i + (meta->cap / STEP) + 2);
 				meta->req = req;
 				meta->cap |= 1;
 				return (zone + i + 2);
@@ -125,7 +124,7 @@ void	*alloc_large(size_t req)
 	meta = (t_metalrg *)ptr;
 	meta->meta.cap = bytes - sizeof(t_metalrg);
 	meta->meta.req = req;
-	meta->back = find_large_ptr(map.large);
+	meta->back = find_large_ptr(g_map.large);
 	*meta->back = ptr;
 	return (ptr + 3);
 }
