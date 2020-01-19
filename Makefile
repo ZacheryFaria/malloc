@@ -19,6 +19,7 @@ VPATH = src obj
 $(NAME): $(OBJ)
 	@make -C libft/
 	@$(CC) $(LFLAGS) $(DLFLAGS) -o $(NAME) obj/*
+	@ln -s -f $(NAME) libft_malloc.so
 	@echo "build complete!"
 
 all: $(NAME)
