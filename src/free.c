@@ -6,13 +6,15 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 15:43:53 by zfaria            #+#    #+#             */
-/*   Updated: 2019/07/30 13:00:24 by zfaria           ###   ########.fr       */
+/*   Updated: 2020/01/18 14:41:49 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libmalloc_util.h>
 #include <sys/mman.h>
 #include <stdio.h>
+
+t_mutex	g_lock;
 
 void	free_large(size_t *ptr)
 {
@@ -50,7 +52,7 @@ void	defrag_next(t_meta *head)
 	}
 }
 
-void	defrag_prev(t_meta	*head)
+void	defrag_prev(t_meta *head)
 {
 	t_meta	*prev_foot;
 	t_meta	*prev_head;
@@ -71,9 +73,9 @@ void	defrag_prev(t_meta	*head)
 		}
 		total_bytes = prev_head->cap + head->cap + sizeof(t_meta) * 2;
 		prev_head->cap = total_bytes;
-		prev_head->req = 1337;
+		prev_head->req = 0;
 		foot->cap = total_bytes;
-		foot->req = 1337;
+		foot->req = 0;
 	}
 }
 
@@ -92,17 +94,20 @@ void	free(void *ptr)
 {
 	size_t	*zone;
 	size_t	zsize;
+
 	if (!ptr)
 		return ;
-
+	pthread_mutex_lock(&g_lock);
 	zone = find_zone_large(ptr);
 	if (zone)
 		free_large(zone);
 	else
-	{	
+	{
 		zone = find_zone(ptr, &zsize);
 		if (!valid_pointer(ptr, zone, zsize))
-			return ;
-		free_internal(ptr);
+			;
+		else
+			free_internal(ptr);
 	}
+	pthread_mutex_unlock(&g_lock);
 }

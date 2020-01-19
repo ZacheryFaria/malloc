@@ -1,7 +1,7 @@
 CC=clang
-CFLAGS=-Wextra -Wall -g
+CFLAGS=-Wextra -Wall -g 
 CFLAGS+=-Iinc -Ilibft
-LFLAGS=-L libft -lft
+LFLAGS=-L libft -lft -Wl,-export_dynamic
 DLFLAGS=-shared -fPIC
 SRC=$(wildcard src/*)
 OBJ=$(SRC:src/%.c=%.o)
@@ -36,4 +36,4 @@ fclean: clean
 re: fclean all
 
 test: $(NAME)
-	$(CC) -o test main.c $(NAME) -g
+	$(CC) -o test main.c $(NAME) -g -Wl,-export_dynamic

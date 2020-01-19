@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 10:35:24 by zfaria            #+#    #+#             */
-/*   Updated: 2019/07/31 11:28:43 by zfaria           ###   ########.fr       */
+/*   Updated: 2020/01/19 12:35:10 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBMALLOC_UTIL_H
 
 # include <libmalloc.h>
+# include <pthread.h>
 
 # define BLK_SIZE 4096
 
@@ -27,12 +28,16 @@
 
 # define STEP sizeof(size_t)
 
+# define STEPS(size) size / STEP
+
 # define ALIGNMENT 8
 # define ALIGN(size) (((size) + (ALIGNMENT - 1)) & ~(ALIGNMENT - 1))
 
 # define ALIGN_LARGE(size) (((size) + (BLK_SIZE - 1)) & ~(BLK_SIZE - 1))
 
 # define ISFREE(meta) (!(meta->cap & 1))
+
+typedef pthread_mutex_t	t_mutex;
 
 typedef struct	s_meta {
 	size_t		cap;
@@ -51,6 +56,7 @@ typedef	struct	s_map {
 }				t_map;
 
 extern	t_map	g_map;
+extern	t_mutex g_lock;
 extern	int		g_malloc_opts;
 
 void			init_map(void);

@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 12:22:21 by zfaria            #+#    #+#             */
-/*   Updated: 2019/07/31 11:25:02 by zfaria           ###   ########.fr       */
+/*   Updated: 2020/01/18 13:47:58 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void		*realloc(void *ptr, size_t size)
 	}
 	zone = find_zone_large(ptr);
 	if (zone)
-		return adjust_large(ptr, size);
+		return (adjust_large(ptr, size));
 	else
-	{	
+	{
 		zone = find_zone(ptr, &zsize);
 		if (!valid_pointer(ptr, zone, zsize))
 			return (0);

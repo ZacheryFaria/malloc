@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 13:57:23 by zfaria            #+#    #+#             */
-/*   Updated: 2019/07/31 11:19:32 by zfaria           ###   ########.fr       */
+/*   Updated: 2019/07/31 11:29:16 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static size_t	*find_page(size_t *ptr, size_t *zone, size_t zsize)
 	size_t steps;
 
 	steps = zsize / STEP;
-
 	while (zone)
 	{
 		if (ptr > zone && ptr < zone + steps)
