@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fmt_macros.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/19 13:00:28 by zfaria            #+#    #+#             */
-/*   Updated: 2020/01/19 13:00:44 by zfaria           ###   ########.fr       */
+/*   Created: 2020/01/19 13:02:41 by zfaria            #+#    #+#             */
+/*   Updated: 2020/01/19 13:05:46 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <libft.h>
 
-int	main(void)
+int	is_inf(char *str)
 {
-	malloc(1024);
-	malloc(1024 * 32);
-	malloc(1024 * 1024);
-	malloc(1024 * 1024 * 16);
-	malloc(1024 * 1024 * 128);
-	show_alloc_mem();
+	return (ft_strstr(str, "inf") || ft_strstr(str, "INF"));
+}
+
+int	has_sign(char *str)
+{
+	return (str[0] == '+' || str[0] == '-');
 }

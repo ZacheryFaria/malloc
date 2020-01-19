@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 13:23:08 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/18 11:09:23 by zfaria           ###   ########.fr       */
+/*   Updated: 2020/01/19 13:05:31 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include <libft.h>
 #include <math.h>
 
-#define ISINF(x) (ft_strstr(x, "inf") || ft_strstr(x, "INF"))
-#define HASSIGN(x) (x[0] == '+' || x[0] == '-')
+#define ISINF is_inf
+#define HASSIGN has_sign
 
 static char	*handle_alt(t_fmtarg *arg, char *str)
 {

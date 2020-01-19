@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 09:46:04 by zfaria            #+#    #+#             */
-/*   Updated: 2019/04/17 16:06:44 by zfaria           ###   ########.fr       */
+/*   Updated: 2020/01/19 13:04:21 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ int				ft_fprintf(int fd, const char *fmt, ...);
 int				ft_sprintf(char **str, const char *fmt, ...);
 
 t_vector		*read_fmt_str(const char *fmt, va_list varg);
+
+int				is_inf(char *str);
+
+int				has_sign(char *str);
 
 void			*fmt_c(t_fmtarg *arg, va_list varg);
 void			*fmt_s(t_fmtarg *arg, va_list varg);
