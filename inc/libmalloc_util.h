@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 10:35:24 by zfaria            #+#    #+#             */
-/*   Updated: 2020/01/19 12:35:10 by zfaria           ###   ########.fr       */
+/*   Updated: 2020/01/19 12:59:13 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,22 @@
 # define TINY_CAP 256
 # define SMALL_CAP 1024
 
-# define TINY_ZONE (BLK_SIZE * 8)
-# define SMALL_ZONE (BLK_SIZE * 32)
+# define TINY_ZONE 32768
+# define SMALL_ZONE 131072
 
 # define ZONE_CAP 64
 
-# define STEP sizeof(size_t)
-
-# define STEPS(size) size / STEP
+# define STEP 8
 
 # define ALIGNMENT 8
-# define ALIGN(size) (((size) + (ALIGNMENT - 1)) & ~(ALIGNMENT - 1))
 
-# define ALIGN_LARGE(size) (((size) + (BLK_SIZE - 1)) & ~(BLK_SIZE - 1))
+# define STEPS steps
 
-# define ISFREE(meta) (!(meta->cap & 1))
+# define ALIGN align
+
+# define ALIGN_LARGE align_large
+
+# define ISFREE is_free
 
 typedef pthread_mutex_t	t_mutex;
 
@@ -70,5 +71,13 @@ size_t			*find_zone(size_t *ptr, size_t *zsize);
 size_t			*find_zone_large(size_t *ptr);
 
 int				valid_pointer(size_t *ptr, size_t *zone, size_t zsize);
+
+int				is_free(t_meta *meta);
+
+size_t			steps(size_t size);
+
+size_t			align(size_t size);
+
+size_t			align_large(size_t size);
 
 #endif
